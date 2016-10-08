@@ -96,7 +96,11 @@ RPC全称是Remote Process Call，即远程过程调用
 <h4 id="基于HTTP协议的RPC"><a href="#基于HTTP协议的RPC" class="headerlink" title="基于HTTP协议的RPC"></a>基于HTTP协议的RPC</h4><p>应用层协议也是基于TCP协议实现的，只是又加了一层Response和Request</p>
 <h4 id="RESTful和RPC"><a href="#RESTful和RPC" class="headerlink" title="RESTful和RPC"></a>RESTful和RPC</h4><p>两种都是较为主流的URL链接风格</p>
 <h5 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h5><p><code>http://hostname/proider.do?service=com,http.sayhello&amp;format=json&amp;timestamp=2013-07-07-13-22-09&amp;arg1=arg1&amp;arg2=arg2</code></p>
-<h5 id="RESTful"><a href="#RESTful" class="headerlink" title="RESTful"></a>RESTful</h5><p>通过HTTP请求对应的POST、GET、PUT、DELETE方法来完成对应的CRUD操作<br><code>POST http://hostname/people/zhangsan  //创建people记录</code><br><code>GET http://hostname/people/zhangsan  //查询people记录</code><br><code>PUT http://hostname/people/zhangsan  //修改people记录</code><br><code>DELETE http://hostname/people/zhangsan  //删除people记录</code></p>
+<h5 id="RESTful"><a href="#RESTful" class="headerlink" title="RESTful"></a>RESTful</h5><p>通过HTTP请求对应的POST、GET、PUT、DELETE方法来完成对应的CRUD操作</p>
+<p><code>POST http://hostname/people/zhangsan  //创建people记录</code></p>
+<p><code>GET http://hostname/people/zhangsan  //查询people记录</code></p>
+<p><code>PUT http://hostname/people/zhangsan  //修改people记录</code></p>
+<p><code>DELETE http://hostname/people/zhangsan  //删除people记录</code></p>
 <h4 id="服务的路由"><a href="#服务的路由" class="headerlink" title="服务的路由"></a>服务的路由</h4><ul>
 <li>规模小的时候，才用硬编码将服务地址和配置写在代码中、或者通过Nginx等软件解决方案</li>
 <li>服务越来越多、规模越来越大的时候，人工管理难以维护、Nginx等软件容易出现单点故障，需要一个能够动态注册和获取服务信息的地方来统一管理服务名称和其对应的服务列表信息，这就有了服务配置中心</li>
@@ -110,7 +114,8 @@ RPC全称是Remote Process Call，即远程过程调用
 <li>加权随机法</li>
 <li>最小连接数（根据当时服务器的连接情况）</li>
 </ol>
-<h4 id="HTTP服务网关"><a href="#HTTP服务网关" class="headerlink" title="HTTP服务网关"></a>HTTP服务网关</h4><p>为了完成相应的权限和安全校验，在服务消费者和服务端之间架设的措施。<br>为了防止单点故障，需要网关集群</p>
+<h4 id="HTTP服务网关"><a href="#HTTP服务网关" class="headerlink" title="HTTP服务网关"></a>HTTP服务网关</h4><p>为了完成相应的权限和安全校验，在服务消费者和服务端之间架设的措施。</p>
+<p>为了防止单点故障，需要网关集群。</p>
 <hr>
 <h2 id="分布式系统基础设施"><a href="#分布式系统基础设施" class="headerlink" title="分布式系统基础设施"></a>分布式系统基础设施</h2><blockquote>
 <p>一个大型、文件、成熟的分布式系统的背后，往往会涉及众多的支撑系统，即分布式系统的基础设施。除了前面的分布式协作即配置管理系统ZooKeeper，还需要分布式缓存系统、持久换存储、分布式消息系统、搜索引擎、CDN系统、负载均衡系统、运维自动化系统、实时计算系统、离线计算系统、分布式文件系统、日志收集系统、监控系统、数据仓库等。</p>
@@ -119,13 +124,23 @@ RPC全称是Remote Process Call，即远程过程调用
 <h4 id="持久化存储"><a href="#持久化存储" class="headerlink" title="持久化存储"></a>持久化存储</h4><h5 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h5><ul>
 <li>业务拆分提高系统稳定性</li>
 <li>Master与Slave的复制架构实现数据同步（也可实现读写分离，一般都是读的多、写的少，所以用于读的Slave可以多设置一点），但是存在单点故障需要使用Master-Master架构</li>
-<li>分表和分库来提高吞吐能力<br><em>但是关系型数据库不适合处理海量数据，于是便有了Nosql</em><h5 id="HBase"><a href="#HBase" class="headerlink" title="HBase"></a>HBase</h5>高可靠性、高可扩展性、实时读/写的列存储数据库<h5 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h5>key-value数据库</li>
+<li>分表和分库来提高吞吐能力<br><em>但是关系型数据库不适合处理海量数据，于是便有了Nosql</em></li>
 </ul>
+<h5 id="HBase"><a href="#HBase" class="headerlink" title="HBase"></a>HBase</h5><p>高可靠性、高可扩展性、实时读/写的列存储数据库</p>
+<h5 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h5><p>key-value数据库</p>
 <h4 id="消息系统"><a href="#消息系统" class="headerlink" title="消息系统"></a>消息系统</h4><p>ActiveMQ</p>
-<h4 id="垂直化搜索引擎"><a href="#垂直化搜索引擎" class="headerlink" title="垂直化搜索引擎"></a>垂直化搜索引擎</h4><p>Lucene：Apache旗下的一款高性能，可伸缩的开源信息检索库，可以十分容易的为应用程序添加文本搜索功能<br>Solr：基于Lucene的搜索引擎工具，对Lucene进行了扩展，提供了HTTP操作接口</p>
+<h4 id="垂直化搜索引擎"><a href="#垂直化搜索引擎" class="headerlink" title="垂直化搜索引擎"></a>垂直化搜索引擎</h4><p>Lucene：Apache旗下的一款高性能，可伸缩的开源信息检索库，可以十分容易的为应用程序添加文本搜索功能</p>
+<p>Solr：基于Lucene的搜索引擎工具，对Lucene进行了扩展，提供了HTTP操作接口</p>
 <hr>
-<h2 id="互联网安全架构"><a href="#互联网安全架构" class="headerlink" title="互联网安全架构"></a>互联网安全架构</h2><h4 id="常见的Web攻击手段"><a href="#常见的Web攻击手段" class="headerlink" title="常见的Web攻击手段"></a>常见的Web攻击手段</h4><h5 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h5><p>跨站脚本攻击<br><code>&lt;input type=&quot;text&quot; name=&quot;nick&quot; value=&quot;xiaomao&quot;&gt;</code><br>如果用户输入的是”/&gt;<script>alert(“haha”)</script>&lt;!-<br><code>&lt;input type=&quot;text&quot; name=&quot;nick&quot; value=&quot;&quot;/&gt;&lt;script&gt;alert(&quot;haha&quot;)&lt;/script&gt;&lt;!-&quot;&gt;</code><br>防范：转义特殊字符&lt;(&lt;)  &gt;(&gt;)  &amp;(‘)  &quot;(“)</p>
-<h5 id="CRSF攻击"><a href="#CRSF攻击" class="headerlink" title="CRSF攻击"></a>CRSF攻击</h5><p>跨站请求伪造<br>通过伪装来自受信任用户的请求来利用受信任的网站。<br>用户成功A网站，之后访问恶意站点B，B要求用户访问A站点（如转账操作），用户带着合法cookie访问A，成功<br>防范：将cookie设置为HttpOnly、增加token、通过Referer识别（http协议头中）</p>
+<h2 id="互联网安全架构"><a href="#互联网安全架构" class="headerlink" title="互联网安全架构"></a>互联网安全架构</h2><h4 id="常见的Web攻击手段"><a href="#常见的Web攻击手段" class="headerlink" title="常见的Web攻击手段"></a>常见的Web攻击手段</h4><h5 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h5><p>跨站脚本攻击</p>
+<p><code>&lt;input type=&quot;text&quot; name=&quot;nick&quot; value=&quot;xiaomao&quot;&gt;</code></p>
+<p>如果用户输入的是”/&gt;<script>alert(“haha”)</script>&lt;!-</p>
+<p><code>&lt;input type=&quot;text&quot; name=&quot;nick&quot; value=&quot;&quot;/&gt;&lt;script&gt;alert(&quot;haha&quot;)&lt;/script&gt;&lt;!-&quot;&gt;</code></p>
+<p>防范：转义特殊字符&lt;(&lt;)  &gt;(&gt;)  &amp;(‘)  &quot;(“)</p>
+<h5 id="CRSF攻击"><a href="#CRSF攻击" class="headerlink" title="CRSF攻击"></a>CRSF攻击</h5><p>跨站请求伪造</p>
+<p>通过伪装来自受信任用户的请求来利用受信任的网站。</p>
+<p>用户成功A网站，之后访问恶意站点B，B要求用户访问A站点（如转账操作），用户带着合法cookie访问A，成功</p>
+<p>防范：将cookie设置为HttpOnly、增加token、通过Referer识别（http协议头中）</p>
 <h5 id="SQL注入攻击"><a href="#SQL注入攻击" class="headerlink" title="SQL注入攻击"></a>SQL注入攻击</h5><p>防范：使用预编译语言（JDBC中的？占位符）、使用ORM框架、避免密码的明文存放</p>
 <h5 id="文件上传漏洞"><a href="#文件上传漏洞" class="headerlink" title="文件上传漏洞"></a>文件上传漏洞</h5><p>防范：限制上传类型（不是通过后缀判断，而是通过魔数来判断）</p>
 <h5 id="DDos攻击"><a href="#DDos攻击" class="headerlink" title="DDos攻击"></a>DDos攻击</h5><p>分布式拒绝服务攻击</p>
@@ -154,7 +169,8 @@ RPC全称是Remote Process Call，即远程过程调用
 <h4 id="HTTPS协议"><a href="#HTTPS协议" class="headerlink" title="HTTPS协议"></a>HTTPS协议</h4><p>在HTTP（应用层）和TCP（传输层）之间加入了SLL or TLS（安全层），对HTTP协议传输的参数进行全程加密，和校验服务端和客户端证书的有效性等</p>
 <h4 id="OAuth协议"><a href="#OAuth协议" class="headerlink" title="OAuth协议"></a>OAuth协议</h4><p>用于第三方登录的协议，不需要密码就可取得第三方信息</p>
 <hr>
-<h2 id="系统稳定性"><a href="#系统稳定性" class="headerlink" title="系统稳定性"></a>系统稳定性</h2><h4 id="在线日志分析"><a href="#在线日志分析" class="headerlink" title="在线日志分析"></a>在线日志分析</h4><p>cat、less、more、tail、sort、wc、find、grep、expr等命令<br>sed、awk编辑器</p>
+<h2 id="系统稳定性"><a href="#系统稳定性" class="headerlink" title="系统稳定性"></a>系统稳定性</h2><h4 id="在线日志分析"><a href="#在线日志分析" class="headerlink" title="在线日志分析"></a>在线日志分析</h4><p>cat、less、more、tail、sort、wc、find、grep、expr等命令</p>
+<p>sed、awk编辑器</p>
 <h4 id="集群监控"><a href="#集群监控" class="headerlink" title="集群监控"></a>集群监控</h4><p>load值、CPU利用率、磁盘剩余、网络traffic、磁盘I/O、内存使用、qps、rt、select/ps、update/ps、delete/ps、GC</p>
 <h4 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h4><ul>
 <li>依赖管理</li>
@@ -168,12 +184,16 @@ RPC全称是Remote Process Call，即远程过程调用
 <li>方法响应时间</li>
 <li>GC日志分析</li>
 <li>数据库查询（找出最耗时的语句）</li>
-<li>系统资源使用<h5 id="性能测试工具"><a href="#性能测试工具" class="headerlink" title="性能测试工具"></a>性能测试工具</h5></li>
+<li>系统资源使用</li>
+</ul>
+<h5 id="性能测试工具"><a href="#性能测试工具" class="headerlink" title="性能测试工具"></a>性能测试工具</h5><ul>
 <li>ab</li>
 <li>Apache JMeter</li>
 <li>HP LoadRunner</li>
 <li>反向代理引流</li>
-<li>TCPCopy<h5 id="性能优化措施"><a href="#性能优化措施" class="headerlink" title="性能优化措施"></a>性能优化措施</h5><h6 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h6></li>
+<li>TCPCopy</li>
+</ul>
+<h5 id="性能优化措施"><a href="#性能优化措施" class="headerlink" title="性能优化措施"></a>性能优化措施</h5><h6 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h6><ul>
 <li>页面HTTP请求数量</li>
 <li>是否使用CDN网络</li>
 <li>是否使用压缩<h6 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h6></li>
@@ -212,7 +232,8 @@ RPC全称是Remote Process Call，即远程过程调用
 <h4 id="流式数据分析"><a href="#流式数据分析" class="headerlink" title="流式数据分析"></a>流式数据分析</h4><blockquote>
 <p>流式 数据的特征是数据会源源不断的从各个地方汇集过来，来源众多，格式复杂，且数据流巨大</p>
 </blockquote>
-<p>Storm<br>开源的分布式实时计算系统，可以简单、可靠的对大量的流失数据进行分析处理。</p>
+<p>Storm</p>
+<p>开源的分布式实时计算系统，可以简单、可靠的对大量的流失数据进行分析处理。</p>
 <h4 id="数据同步"><a href="#数据同步" class="headerlink" title="数据同步"></a>数据同步</h4><h5 id="离线数据同步"><a href="#离线数据同步" class="headerlink" title="离线数据同步"></a>离线数据同步</h5><p>Sqoop</p>
 <h5 id="实时数据同步"><a href="#实时数据同步" class="headerlink" title="实时数据同步"></a>实时数据同步</h5><p>可以利用类似ActiveMQ的消息系统来进行实时的增量数控同步</p>
 <h4 id="数据报表"><a href="#数据报表" class="headerlink" title="数据报表"></a>数据报表</h4><p>Highcharts</p>
@@ -240,8 +261,8 @@ RPC全称是Remote Process Call，即远程过程调用
           <div class="clearfix"></div>
           <nav id="pagination">
   
+    <a href="/2016/10/08/js面向对象/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
   
-    <a href="/2016/09/29/test/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
   
   <div class="clearfix"></div>
 </nav>

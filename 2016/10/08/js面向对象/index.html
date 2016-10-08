@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>js面向对象 | JustACoder</title>
+  <meta name="author" content="gblx">
+  
+  <meta name="description" content="字面式 (literal notation) 对象声明12345678910var person = &amp;#123;    name: &quot;张三&quot;,    age: 26,    gender: &quot;男&quot;,    eat: function(stuff) &amp;#123;        alert(&quot;我在吃&quot; + stuff);    &amp;#125;&amp;#125;;person.height = 176;delete person[&quot;age&quot;];">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="js面向对象"/>
+  <meta property="og:site_name" content="JustACoder"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="JustACoder" type="application/atom+xml">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+<link rel="stylesheet" href="/css/style.css">
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <header id="header" class='normal_mode'>
+    <nav id="main-nav">
+  <ul class='container'>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+  </header>
+  <div id="content" class="container">
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2016-10-08T02:11:29.000Z"><a href="/2016/10/08/js面向对象/">周六, 10月 8 2016, 10:11:29 上午</a></time>
+
+  
+    <h1 class="title">js面向对象</h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/javascript/">javascript</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="字面式-literal-notation-对象声明"><a href="#字面式-literal-notation-对象声明" class="headerlink" title="字面式 (literal notation) 对象声明"></a>字面式 (literal notation) 对象声明</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">"张三"</span>,</div><div class="line">    <span class="attr">age</span>: <span class="number">26</span>,</div><div class="line">    <span class="attr">gender</span>: <span class="string">"男"</span>,</div><div class="line">    <span class="attr">eat</span>: <span class="function"><span class="keyword">function</span>(<span class="params">stuff</span>) </span>&#123;</div><div class="line">        alert(<span class="string">"我在吃"</span> + stuff);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">person.height = <span class="number">176</span>;</div><div class="line"><span class="keyword">delete</span> person[<span class="string">"age"</span>];</div></pre></td></tr></table></figure>
+ <a id="more"></a>
+<h3 id="使用构造器（构造函数）-constructor-创建对象"><a href="#使用构造器（构造函数）-constructor-创建对象" class="headerlink" title="使用构造器（构造函数）(constructor) 创建对象"></a>使用构造器（构造函数）(constructor) 创建对象</h3><p>(创建高级对象构造有两种方式：使用“this”关键字构造、使用原型prototype构造。)</p>
+<p>PS：当访问对象的属性或者方法是，将按照搜索原型链prototype chain的规则进行。首先查找自身的静态属性、方法，继而查找构造上下文的可访问属性、方法，最后查找构造的原型链</p>
+<p>“this”与“prototype”定义的另一个不同点是属性的占用空间不同。使用“this”关键字，实例初始化时为每个实例开辟构造方法所包含的所有属性、方法所需的空间，而使用“prototype”定义，由于“prototype”实际上是指向父级的一种引用，仅仅是个数据的副本，因此在初始化及存储上都比“this”节约资源。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//使用this关键字定义构造的上下文属性 </span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Girl</span>(<span class="params"></span>) </span></div><div class="line">&#123; </div><div class="line"><span class="keyword">this</span>.name = <span class="string">"big pig"</span>; </div><div class="line"><span class="keyword">this</span>.age = <span class="number">20</span>; </div><div class="line"><span class="keyword">this</span>.standing; </div><div class="line"><span class="keyword">this</span>.bust; </div><div class="line"><span class="keyword">this</span>.waist; </div><div class="line"><span class="keyword">this</span>.hip; </div><div class="line">&#125; </div><div class="line"></div><div class="line"><span class="comment">//使用prototype </span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Girl</span>(<span class="params"></span>)</span>&#123;&#125; </div><div class="line">Girl.prototype.name = <span class="string">"big pig"</span>; </div><div class="line">Girl.prototype.age = <span class="number">20</span>; </div><div class="line">Girl.prototype.standing; </div><div class="line">Girl.prototype.bust; </div><div class="line">Girl.prototype.waist; </div><div class="line">Girl.prototype.hip; </div><div class="line">alert(<span class="keyword">new</span> Girl().name); </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">Person.prototype = &#123;</div><div class="line">    <span class="attr">name</span>: “张三”,</div><div class="line">    <span class="attr">age</span>: <span class="number">26</span>,</div><div class="line">    <span class="attr">gender</span>: “男”,</div><div class="line">    <span class="attr">eat</span>: <span class="function"><span class="keyword">function</span>(<span class="params">stuff</span>) </span>&#123;</div><div class="line">        alert(“我在吃” + stuff);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person();</div><div class="line"></div><div class="line"></div><div class="line">推荐使用的创建对象方式</div><div class="line">  混合的构造函数</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = <span class="string">"李小龙"</span>;</div><div class="line">    <span class="keyword">this</span>.age = <span class="number">32</span>;</div><div class="line">&#125;;</div><div class="line">Parent.prototype.lev = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> x = <span class="keyword">new</span> Parent();</div><div class="line">alert(x.lev());</div></pre></td></tr></table></figure></p>
+<ol>
+<li>该模式是指混合搭配使用构造函数方式和原型方式</li>
+<li>将所有属性不是方法的属性定义在函数中（构造函数方式）将所有属性值为方法的属性利用prototype在函数之外定义（原型方式）</li>
+</ol>
+<h3 id="对象的-proto属性和隐式引用"><a href="#对象的-proto属性和隐式引用" class="headerlink" title="对象的 proto属性和隐式引用"></a>对象的 <strong>proto</strong>属性和隐式引用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person();</div><div class="line"><span class="built_in">console</span>.log(p.__proto__ === Person.prototype);  （<span class="literal">true</span>）</div><div class="line"><span class="built_in">console</span>.log(Person.prototype.__proto__ === <span class="built_in">Object</span>.prototype);  （<span class="literal">true</span>）</div><div class="line"><span class="built_in">console</span>.log(Person.__proto__ === <span class="built_in">Function</span>.prototype);  （<span class="literal">true</span>）</div></pre></td></tr></table></figure>
+<h3 id="利用原型链Horse-gt-Mammal-gt-Animal-实现继承"><a href="#利用原型链Horse-gt-Mammal-gt-Animal-实现继承" class="headerlink" title="利用原型链Horse-&gt;Mammal-&gt;Animal 实现继承"></a>利用原型链Horse-&gt;Mammal-&gt;Animal 实现继承</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">function Animal() &#123; &#125; </div><div class="line">Animal.prototype = &#123; </div><div class="line">name: animal",</div><div class="line">weight: 0,</div><div class="line">eat: function() &#123;</div><div class="line">    alert("Animal is eating!");</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">Mammal() &#123;</div><div class="line">    this.name = "mammal";</div><div class="line">&#125; </div><div class="line">Mammal.prototype = new Animal(); </div><div class="line">function Horse( height,weight) &#123;</div><div class="line">    this.name = "horse";</div><div class="line">    this.height = height;</div><div class="line">    this.weight = weight;</div><div class="line">&#125; </div><div class="line">Horse.prototype = new Mammal();</div><div class="line">Horse.prototype.eat = function() &#123;</div><div class="line">    alert("Horse is</div><div class="line">        eating grass!");</div><div class="line">&#125;</div><div class="line"> var horse = new Horse( 100, 300 ); </div><div class="line">console.log(horse.__proto__ === Horse.prototype);</div><div class="line">console.log(Horse.prototype.__proto__ === Mammal.prototype);</div><div class="line">console.log(Mammal.prototype.__proto__ === Animal.prototype);</div></pre></td></tr></table></figure>
+<h3 id="使用闭包实现信息隐藏"><a href="#使用闭包实现信息隐藏" class="headerlink" title="使用闭包实现信息隐藏"></a>使用闭包实现信息隐藏</h3><p>（匿名函数本身也是一个闭包，可以在函数外部对函数内部的局部变量进行操作。）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params"> pwd </span>) </span>&#123; </div><div class="line"><span class="keyword">var</span> password = pwd;</div><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">getPassword</span>(<span class="params"></span>) </span>&#123; </div><div class="line"><span class="keyword">return</span> password;</div><div class="line"> &#125;</div><div class="line"> <span class="keyword">this</span>.passwordService = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="keyword">return</span> getPassword();</div><div class="line">        &#125; </div><div class="line">&#125;</div><div class="line">User.prototype.checkPassword = <span class="function"><span class="keyword">function</span>(<span class="params"> pwd </span>) </span>&#123; </div><div class="line"><span class="keyword">return</span> <span class="keyword">this</span>.passwordService()=== pwd;</div><div class="line"> &#125;;</div><div class="line"><span class="keyword">var</span> u = <span class="keyword">new</span> User( <span class="string">"123456"</span> ); </div><div class="line"><span class="comment">// 打印 true </span></div><div class="line"><span class="built_in">console</span>.log( u.checkPassword(<span class="string">"123456"</span> ) ); </div><div class="line"><span class="comment">// 打印 undefined </span></div><div class="line"><span class="built_in">console</span>.log( u.password ); </div><div class="line"><span class="comment">// 打印 true </span></div><div class="line"><span class="built_in">console</span>.log( <span class="keyword">typeof</span> u.getPassword === <span class="string">"undefined"</span> );</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+          
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <span class="jiathis_txt">分享到：</span>
+  <a class="jiathis_button_weixin">微信</a>
+  <a class="jiathis_button_tsina">新浪微博</a>
+  <a class="jiathis_button_renren">人人网</a>
+  <a class="jiathis_button_qzone">QQ空间</a>
+  <a class="jiathis_button_douban">豆瓣</a>
+  <a class="jiathis_button_pocket">Pocket</a>
+  <a href="http://www.jiathis.com/share?uid=901656" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="https://v3.jiathis.com/code_mini/jia.js?uid=901656" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+          <div class="clearfix"></div>
+          <nav id="pagination">
+  
+  
+    <a href="/2016/10/07/大型分布式网站架构读书笔记/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+  
+  <div class="clearfix"></div>
+</nav>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-thread-key="/2016/10/08/js面向对象/"></div>
+<!-- Duoshuo Comment END -->
+  
+</section>
+
+
+
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2016 gblx
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="external">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="external">GitHub Pages</a>
+
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+
+
+
+    <script type="text/javascript">
+        (function(){
+
+            $(window).scroll(function(){
+
+                var scrollTop = $(window).scrollTop();
+                if ( scrollTop >200 ){
+                    $("#main-nav").removeClass('normal_mode').addClass('top_mode');
+                } else{
+                    $("#main-nav").removeClass('top_mode').addClass('normal_mode');
+                }
+
+            });
+
+        })();
+    </script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+
+    
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"gblw"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = 'https://static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $('.title').hover(
+      function() {      
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );   
+      }, 
+      function() {       
+        $(this).stop().animate({'marginLeft': '0px'}, 200);      
+      
+    });   
+
+  });
+
+</script>
+
+
+</body>
+</html>
