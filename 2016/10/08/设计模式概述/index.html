@@ -1,0 +1,244 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>设计模式概述 | JustACoder</title>
+  <meta name="author" content="gblx">
+  
+  <meta name="description" content="创建型模式工厂模式 3种单例模式(注意synchronized关键字的使用)
+
+饿汉模式：在类加载的时候就把对象初始化(线程安全)
+懒汉模式：在调用获取对象的方法时判断时候存在该对象，不存在再创建(线程不安全)">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="设计模式概述"/>
+  <meta property="og:site_name" content="JustACoder"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="JustACoder" type="application/atom+xml">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+<link rel="stylesheet" href="/css/style.css">
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <header id="header" class='normal_mode'>
+    <nav id="main-nav">
+  <ul class='container'>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+  </header>
+  <div id="content" class="container">
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2016-10-08T03:10:48.000Z"><a href="/2016/10/08/设计模式概述/">周六, 10月 8 2016, 11:10:48 上午</a></time>
+
+  
+    <h1 class="title">设计模式概述</h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/设计模式/">设计模式</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h3><h5 id="工厂模式-3种"><a href="#工厂模式-3种" class="headerlink" title="工厂模式 3种"></a>工厂模式 3种</h5><h5 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h5><p>(注意synchronized关键字的使用)</p>
+<ul>
+<li>饿汉模式：在类加载的时候就把对象初始化(线程安全)</li>
+<li>懒汉模式：在调用获取对象的方法时判断时候存在该对象，不存在再创建(线程不安全)<a id="more"></a>
+<h5 id="建造者模式-builder模式"><a href="#建造者模式-builder模式" class="headerlink" title="建造者模式(builder模式)"></a>建造者模式(builder模式)</h5>(一次创建多个对象)(可用于替代多参数构造函数)<h5 id="原型模式-clone"><a href="#原型模式-clone" class="headerlink" title="原型模式(clone)"></a>原型模式(clone)</h5></li>
+</ul>
+<hr>
+<h3 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h3><h5 id="适配器模式-三种"><a href="#适配器模式-三种" class="headerlink" title="适配器模式 三种"></a>适配器模式 三种</h5><ol>
+<li>类的适配器模式：当希望将一个类转换成满足另一个新接口的类时，可以使用类的适配器模式，创建一个新类，继承原有的类，实现新的接口即可。</li>
+<li>对象的适配器模式：当希望将一个对象转换成满足另一个新接口的对象时，可以创建一个Wrapper类，持有原类的一个实例，在Wrapper类的方法中，调用实例的方法就行。</li>
+<li>接口的适配器模式：当不希望实现一个接口中所有的方法时，可以创建一个抽象类Wrapper，实现所有方法，我们写别的类的时候，继承抽象类即可。</li>
+</ol>
+<h5 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h5><p>为某个类增删功能</p>
+<h5 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h5><h5 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h5><p>(电脑开关机电脑类自动开关cpu类、内存类等)</p>
+<h5 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h5><p>(jdbc的drivermanager)</p>
+<h5 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h5><p>(又叫部分-整体模型)如树</p>
+<h5 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h5><p>(如数据连接池)</p>
+<hr>
+<h3 id="行为性模式"><a href="#行为性模式" class="headerlink" title="行为性模式"></a>行为性模式</h3><h4 id="父类与子类"><a href="#父类与子类" class="headerlink" title="父类与子类"></a>父类与子类</h4><h5 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h5><h5 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h5><h4 id="两个类之间"><a href="#两个类之间" class="headerlink" title="两个类之间"></a>两个类之间</h4><h5 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h5><p>(被观察类改变时通知依赖于它的其他类)</p>
+<h5 id="迭代子模式"><a href="#迭代子模式" class="headerlink" title="迭代子模式"></a>迭代子模式</h5><p>(collection中的iterator)</p>
+<h5 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h5><h5 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h5><p>(解耦)</p>
+<h5 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h5><p>(“备份-恢复”模式)</p>
+<h5 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h5><p>(可以通过改变状态来获得不同的行为)</p>
+<h5 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h5><h5 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h5><p>(解耦 类似于spring)</p>
+<h5 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h5><p>(一般用于OOP开发中的编译器开发中)</p>
+
+      
+    </div>
+    <footer>
+      
+          
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <span class="jiathis_txt">分享到：</span>
+  <a class="jiathis_button_weixin">微信</a>
+  <a class="jiathis_button_tsina">新浪微博</a>
+  <a class="jiathis_button_renren">人人网</a>
+  <a class="jiathis_button_qzone">QQ空间</a>
+  <a class="jiathis_button_douban">豆瓣</a>
+  <a class="jiathis_button_pocket">Pocket</a>
+  <a href="http://www.jiathis.com/share?uid=901656" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="https://v3.jiathis.com/code_mini/jia.js?uid=901656" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+          <div class="clearfix"></div>
+          <nav id="pagination">
+  
+    <a href="/2016/10/08/单例模式/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
+  
+  
+    <a href="/2016/10/08/js面向对象/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+  
+  <div class="clearfix"></div>
+</nav>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-thread-key="/2016/10/08/设计模式概述/"></div>
+<!-- Duoshuo Comment END -->
+  
+</section>
+
+
+
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2016 gblx
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="external">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="external">GitHub Pages</a>
+
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+
+
+
+    <script type="text/javascript">
+        (function(){
+
+            $(window).scroll(function(){
+
+                var scrollTop = $(window).scrollTop();
+                if ( scrollTop >200 ){
+                    $("#main-nav").removeClass('normal_mode').addClass('top_mode');
+                } else{
+                    $("#main-nav").removeClass('top_mode').addClass('normal_mode');
+                }
+
+            });
+
+        })();
+    </script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+
+    
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"gblw"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = 'https://static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $('.title').hover(
+      function() {      
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );   
+      }, 
+      function() {       
+        $(this).stop().animate({'marginLeft': '0px'}, 200);      
+      
+    });   
+
+  });
+
+</script>
+
+
+</body>
+</html>
