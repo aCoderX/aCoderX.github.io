@@ -136,7 +136,7 @@ RPC全称是Remote Process Call，即远程过程调用
 <p><code>&lt;input type=&quot;text&quot; name=&quot;nick&quot; value=&quot;xiaomao&quot;&gt;</code></p>
 <p>如果用户输入的是”/&gt;<script>alert(“haha”)</script>&lt;!-</p>
 <p><code>&lt;input type=&quot;text&quot; name=&quot;nick&quot; value=&quot;&quot;/&gt;&lt;script&gt;alert(&quot;haha&quot;)&lt;/script&gt;&lt;!-&quot;&gt;</code></p>
-<p>防范：转义特殊字符&lt;(&lt;)  &gt;(&gt;)  &amp;(‘)  &quot;(“)</p>
+<p>防范：转义特殊字符\&lt; (&lt;)  \&gt; (&gt;)  \&amp; (&amp;)  \&quot; (“)</p>
 <h5 id="CRSF攻击"><a href="#CRSF攻击" class="headerlink" title="CRSF攻击"></a>CRSF攻击</h5><p>跨站请求伪造</p>
 <p>通过伪装来自受信任用户的请求来利用受信任的网站。</p>
 <p>用户成功A网站，之后访问恶意站点B，B要求用户访问A站点（如转账操作），用户带着合法cookie访问A，成功</p>
