@@ -40,7 +40,31 @@
 </nav>
   </header>
   <div id="content" class="container">
-    <div id="cover">
+      <aside id="sidebar">
+          
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>2</small></li>
+  
+    <li><a href="/tags/其他/">其他</a><small>1</small></li>
+  
+    <li><a href="/tags/设计模式/">设计模式</a><small>2</small></li>
+  
+    <li><a href="/tags/读书笔记/">读书笔记</a><small>1</small></li>
+  
+    <li><a href="/tags/跨域/">跨域</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+      </aside>
+    <section id="main"><div id="cover">
 	<div id="profile" alt="http://oe9o9e68g.bkt.clouddn.com/background.jpg">
 		<a href="/">
 			<div class="logo">
@@ -68,6 +92,68 @@
 </ul>
 	</div>
 </div>
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2016-10-08T13:57:02.000Z"><a href="/2016/10/08/jsonp/">周六, 10月 8 2016, 9:57:02 晚上</a></time>
+
+  
+    <h1 class="title"><a href="/2016/10/08/jsonp/">jsonp</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/javascript/">javascript</a>, <a href="/tags/跨域/">跨域</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="jsonp客户端"><a href="#jsonp客户端" class="headerlink" title="jsonp客户端"></a>jsonp客户端</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//通过script实现jsonp</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">CreateScript</span>(<span class="params">src</span>) </span>&#123;</div><div class="line">	$(<span class="string">"&lt;script&gt;&lt;//script&gt;"</span>).attr(<span class="string">"src"</span>,src).appendTo(<span class="string">"body"</span>)</div><div class="line">&#125;</div><div class="line"><span class="comment">//回调函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">JSONcallback</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(data);</div><div class="line">&#125;</div><div class="line"><span class="comment">//点击按钮触发</span></div><div class="line">$(<span class="string">"#getOtherDomainThings"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	CreateScript(<span class="string">"http://localhost:8080/JSONP/getJSON?callback=JSONcallback"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2016/10/08/jsonp/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="https://acoderx.github.io/2016/10/08/jsonp/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2016/10/08/jsonp/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
 
 
   <article class="post">
@@ -462,8 +548,9 @@
 
 <script src="/js/jquery.anystretch.min.js"></script>
 <script src="/js/cover.js"></script>
-
+</section>
     <div class="clearfix"></div>
+
   </div>
   <footer id="footer" class="inner"><div>
   

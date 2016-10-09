@@ -3,17 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo搭建github的blog | JustACoder</title>
+  <title>jsonp | JustACoder</title>
   <meta name="author" content="gblx">
   
-  <meta name="description" content="### 今天天气不错啊啊啊啊
-xasdcads
-csdcxzcd">
+  <meta name="description" content="jsonp客户端123456789101112//通过script实现jsonpfunction CreateScript(src) &amp;#123;	$(&quot;&amp;lt;script&amp;gt;&amp;lt;//script&amp;gt;&quot;).attr(&quot;src&quot;,src).appendTo(&quot;body&quot;)&amp;#125;//回调函数function JSONcallback(data) &amp;#123;	console.log(data);&amp;#125;//点击按钮触发$(&quot;#getOtherDomainThings&quot;).click(function() &amp;#123;	CreateScript(&quot;http://localhost:8080/JSONP/getJSON?callback=JSONcallback&quot;);&amp;#125;);">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Hexo搭建github的blog"/>
+  <meta property="og:title" content="jsonp"/>
   <meta property="og:site_name" content="JustACoder"/>
 
   
@@ -44,7 +42,31 @@ csdcxzcd">
 </nav>
   </header>
   <div id="content" class="container">
-    <article class="post">
+      <aside id="sidebar">
+          
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>2</small></li>
+  
+    <li><a href="/tags/其他/">其他</a><small>1</small></li>
+  
+    <li><a href="/tags/设计模式/">设计模式</a><small>2</small></li>
+  
+    <li><a href="/tags/读书笔记/">读书笔记</a><small>1</small></li>
+  
+    <li><a href="/tags/跨域/">跨域</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+      </aside>
+    <section id="main"><article class="post">
   
     <div class="gallery">
   <div class="photoset">
@@ -61,10 +83,10 @@ csdcxzcd">
   <div class="post-content">
     <header>
       
-      <time datetime="2016-09-29T01:56:08.000Z"><a href="/2016/09/29/test/">周四, 9月 29 2016, 9:56:08 上午</a></time>
+      <time datetime="2016-10-08T13:57:02.000Z"><a href="/2016/10/08/jsonp/">周六, 10月 8 2016, 9:57:02 晚上</a></time>
 
   
-    <h1 class="title">Hexo搭建github的blog</h1>
+    <h1 class="title">jsonp</h1>
   
 
 
@@ -72,7 +94,7 @@ csdcxzcd">
   
   <div class="tags">
   	<i class="fa fa-tag"></i>
-    <a href="/tags/其他/">其他</a>
+    <a href="/tags/javascript/">javascript</a>, <a href="/tags/跨域/">跨域</a>
   </div>
 
 <div class="clear"></div>
@@ -80,11 +102,15 @@ csdcxzcd">
     </header>
     <div class="entry">
       
-        <h2 id=""><a href="#" class="headerlink" title="### "></a>### </h2><p>今天天气不错啊啊啊啊</p>
-<p>xasdcads</p>
-<p>csdc<br>xzcd</p>
+        <h3 id="jsonp客户端"><a href="#jsonp客户端" class="headerlink" title="jsonp客户端"></a>jsonp客户端</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//通过script实现jsonp</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">CreateScript</span>(<span class="params">src</span>) </span>&#123;</div><div class="line">	$(<span class="string">"&lt;script&gt;&lt;//script&gt;"</span>).attr(<span class="string">"src"</span>,src).appendTo(<span class="string">"body"</span>)</div><div class="line">&#125;</div><div class="line"><span class="comment">//回调函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">JSONcallback</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(data);</div><div class="line">&#125;</div><div class="line"><span class="comment">//点击按钮触发</span></div><div class="line">$(<span class="string">"#getOtherDomainThings"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	CreateScript(<span class="string">"http://localhost:8080/JSONP/getJSON?callback=JSONcallback"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
  <a id="more"></a>
-<p> lalal</p>
+<h3 id="jsonp服务端"><a href="#jsonp服务端" class="headerlink" title="jsonp服务端"></a>jsonp服务端</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">String cb = request.getParameter(<span class="string">"callback"</span>);</div><div class="line">String json=<span class="string">"&#123;'id':'1','name':'wang'&#125;"</span>;</div><div class="line">Writer out=response.getWriter();</div><div class="line">out.write(cb+<span class="string">"("</span>);</div><div class="line">out.write(json);</div><div class="line">out.write(<span class="string">");"</span>);</div></pre></td></tr></table></figure>
+<hr>
+<ol>
+<li>只能处理get请求</li>
+<li>需要服务端改动</li>
+<li>只能用于js</li>
+</ol>
 
       
     </div>
@@ -109,8 +135,8 @@ csdcxzcd">
           <div class="clearfix"></div>
           <nav id="pagination">
   
-    <a href="/2016/10/07/大型分布式网站架构读书笔记/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
   
+    <a href="/2016/10/08/正则表达式/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
   
   <div class="clearfix"></div>
 </nav>
@@ -126,14 +152,15 @@ csdcxzcd">
 
   
       <!-- Duoshuo Comment BEGIN -->
-<div class="ds-thread" data-thread-key="/2016/09/29/test/"></div>
+<div class="ds-thread" data-thread-key="/2016/10/08/jsonp/"></div>
 <!-- Duoshuo Comment END -->
   
 </section>
 
 
-
+</section>
     <div class="clearfix"></div>
+
   </div>
   <footer id="footer" class="inner"><div>
   
