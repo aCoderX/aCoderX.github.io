@@ -63,7 +63,7 @@ p {
 }
 @media screen and (min-width: 1200px) {
   .container {
-    width: 800px;
+    width: 90%;
   }
 }
 .jiathis_style * {
@@ -91,6 +91,15 @@ p {
 .tags a:hover {
   color: #258fb8;
   text-decoration: none;
+}
+#sidebar {
+  float: left;
+  width: 20%;
+}
+#main {
+  float: left;
+  margin-left: 5%;
+  width: 70%;
 }
 #header {
   text-shadow: 0 0 1px #fff;
