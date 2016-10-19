@@ -1,0 +1,433 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Maven实战读书笔记 | JustACoder</title>
+  <meta name="author" content="gblx">
+  
+  <meta name="description" content="坐标和依赖依赖的范围
+compile 编译依赖范围。默认范围，对于编译、测试、运行三种classpath都有效
+test 测试依赖范围。只对测试classpath有效，如：JUnit
+provided 已提供依赖范围。对于编译和测试classpath有效，如：servlet-api
+runtime 运行时依赖范围。对于测试和运行classpath有效。如：JDBC驱动
+system 系统依赖范围
+import 导入依赖范围">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Maven实战读书笔记"/>
+  <meta property="og:site_name" content="JustACoder"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="JustACoder" type="application/atom+xml">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+<link rel="stylesheet" href="/css/style.css">
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <header id="header" class='normal_mode'>
+    <nav id="main-nav">
+  <ul class='container'>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+  </header>
+  <div id="content" class="container">
+      <aside id="sidebar">
+          
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>2</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/tags/其他/">其他</a><small>1</small></li>
+  
+    <li><a href="/tags/设计模式/">设计模式</a><small>2</small></li>
+  
+    <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
+  
+    <li><a href="/tags/跨域/">跨域</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+      </aside>
+    <section id="main"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2016-10-19T01:44:10.000Z"><a href="/2016/10/19/Maven实战读书笔记/">周三, 10月 19 2016, 9:44:10 上午</a></time>
+
+  
+    <h1 class="title">Maven实战读书笔记</h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/读书笔记/">读书笔记</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="坐标和依赖"><a href="#坐标和依赖" class="headerlink" title="坐标和依赖"></a>坐标和依赖</h3><h4 id="依赖的范围"><a href="#依赖的范围" class="headerlink" title="依赖的范围"></a>依赖的范围</h4><ul>
+<li>compile 编译依赖范围。默认范围，对于编译、测试、运行三种classpath都有效</li>
+<li>test 测试依赖范围。只对测试classpath有效，如：JUnit</li>
+<li>provided 已提供依赖范围。对于编译和测试classpath有效，如：servlet-api</li>
+<li>runtime 运行时依赖范围。对于测试和运行classpath有效。如：JDBC驱动</li>
+<li>system 系统依赖范围</li>
+<li>import 导入依赖范围<a id="more"></a>
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><blockquote>
+<p>Maven的生命周期包含了项目的清理、初始化、编译、测试、打包、集成测试、验证、部署和站点生成。Maven的生命周期是抽象的，实际的任务都交由插件完成。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="三套生命周期"><a href="#三套生命周期" class="headerlink" title="三套生命周期"></a>三套生命周期</h4><h5 id="clean生命周期"><a href="#clean生命周期" class="headerlink" title="clean生命周期"></a>clean生命周期</h5><p>目的是清理项目</p>
+<ul>
+<li>pre-clean 执行一些清理前需要完成的工作</li>
+<li>clean 清理上一次构建生成的文件</li>
+<li>post-clean 执行一些清理后需要完成的工作</li>
+</ul>
+<h5 id="default生命周期"><a href="#default生命周期" class="headerlink" title="default生命周期"></a>default生命周期</h5><p>定义了真正构建时所需要执行的所有步骤，是所有生命周期中最核心的部分</p>
+<ul>
+<li>valicate</li>
+<li>initialize</li>
+<li>generate-sources</li>
+<li>process-sources 处理项目主资源文件，一般来说是对src/main/resources目录的内容进行变量替换等工作后，复制到项目输出的主classpath目录中</li>
+<li>generate-resources</li>
+<li>process-resources</li>
+<li>compile 编译项目的主源码，一般来说是src/main/java目录下的java文件到项目输出的主classpath目录中</li>
+<li>process-classes</li>
+<li>generate-test-sources</li>
+<li>process-test-sources 处理项目测试资源文件，一般来说是对src/test/resources目录的内容进行变量替换等工作后，复制到项目输出的测试classpath目录中</li>
+<li>generate-test-resources</li>
+<li>process-test-resources</li>
+<li>test-compile 编译项目的测试代码，一般来说是src/test/java目录下的java文件到项目输出的测试classpath目录中</li>
+<li>process-test-classes</li>
+<li>test 使用单元测试框架运行测试，测试代码不会被打包或部署</li>
+<li>prepare-package</li>
+<li>package 接受编译好的代码，打包成可发布的格式，如jar</li>
+<li>pre-integration-test</li>
+<li>interation-test</li>
+<li>post-integration-test</li>
+<li>verify</li>
+<li>install 将包安装到Maven本地仓库，供本地其他maven项目使用</li>
+<li>deploy 将最终的包复制到远程仓库，供其他开发人员个maven使用</li>
+</ul>
+<h5 id="site生命周期"><a href="#site生命周期" class="headerlink" title="site生命周期"></a>site生命周期</h5><p>目的是建立和发布项目站点，Maven能够基于POM所包含的信息，自己生成一个友好的站点，方便团队交流和发布项目信息</p>
+<ul>
+<li>pre-site 执行一些站点生成前所需完成的工作</li>
+<li>site 生成项目站点文档</li>
+<li>post-site 执行一些站点生成后需要完成的工作</li>
+<li>site-deploy 将生成的项目站点发布到服务器上</li>
+</ul>
+<h4 id="命令行与生命周期"><a href="#命令行与生命周期" class="headerlink" title="命令行与生命周期"></a>命令行与生命周期</h4><ul>
+<li>mvn clean：该命令调用clean生命周期的clean阶段。实际执行的阶段为clean生命周期的pre-clean和clean阶段</li>
+<li>mvn test：调用default生命周期的test阶段。实际执行的阶段为default生周期的validate、initialize等，直到test的所有阶段。</li>
+<li>mvn install：调用clean生命周期的clean阶段和default生命周期的install阶段。实际执行的阶段为clean生命周期的pre-clean和clean阶段，以及default生周期的从validate到install的所有阶段。</li>
+<li>mvn clean deploy site-deploy：调用了clean生命周期的clean阶段、default生命周期的deploy阶段，以及site生命周期的site-deploy阶段。</li>
+</ul>
+<h4 id="插件目标"><a href="#插件目标" class="headerlink" title="插件目标"></a>插件目标</h4><p>一个插件可以实现多个功能，为了复用，将每个功能作为一个插件目标</p>
+<h4 id="插件绑定"><a href="#插件绑定" class="headerlink" title="插件绑定"></a>插件绑定</h4><p>Maven的生命周期的阶段与插件的目标相互绑定，用以完成实际的构建任务。</p>
+<p>如项目编译这一任务，它对应了default生命周期的compile这一阶段，而maven-compiler-plugin这一插件的compile目标能够完成该任务，因此，将他们绑定就能实现项目编码的目的。</p>
+<h5 id="内置绑定"><a href="#内置绑定" class="headerlink" title="内置绑定"></a>内置绑定</h5><p>为了让用户几乎不用任何配置就能构建Maven项目，Maven在核心为一些主要的生命周期阶段绑定了很多插件的目标，当用户通过命令行调用生命周期阶段的时候，对应的插件目标就会执行相应的任务。</p>
+<h6 id="clean生命周期-1"><a href="#clean生命周期-1" class="headerlink" title="clean生命周期"></a>clean生命周期</h6><table>
+<thead>
+<tr>
+<th>生命周期阶段</th>
+<th>插件目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pre-clean</td>
+<td></td>
+</tr>
+<tr>
+<td>clean</td>
+<td>maven-clean-plugin:clean</td>
+</tr>
+<tr>
+<td>post-clean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h6 id="site生命周期-1"><a href="#site生命周期-1" class="headerlink" title="site生命周期"></a>site生命周期</h6><table>
+<thead>
+<tr>
+<th>生命周期阶段</th>
+<th>插件目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pre-site</td>
+<td></td>
+</tr>
+<tr>
+<td>site</td>
+<td>maven-site-plugin : site</td>
+</tr>
+<tr>
+<td>post-site</td>
+<td></td>
+</tr>
+<tr>
+<td>site-deploy</td>
+<td>maven-site-plugin:deploy</td>
+</tr>
+</tbody>
+</table>
+<h6 id="default生命周期-1"><a href="#default生命周期-1" class="headerlink" title="default生命周期"></a>default生命周期</h6><table>
+<thead>
+<tr>
+<th>生命周期阶段</th>
+<th>插件目标</th>
+<th>执行任务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>process-resources</td>
+<td>maven-resources-plugin:resources</td>
+<td>复制主资源文件至主输出目录</td>
+</tr>
+<tr>
+<td>compile</td>
+<td>maven-compiler-plugin:compile</td>
+<td>编译主代码至主输出目录</td>
+</tr>
+<tr>
+<td>process-test-resources</td>
+<td>maven-resources-plugin:testRecources</td>
+<td>复制测试资源文件至测试输出目录</td>
+</tr>
+<tr>
+<td>test-compile</td>
+<td>maven-compiler-plugin:testCompile</td>
+<td>编译测试代码至测试输出目录</td>
+</tr>
+<tr>
+<td>test</td>
+<td>maven-surefire-plugin:test</td>
+<td>执行测试用例</td>
+</tr>
+<tr>
+<td>package</td>
+<td>maven-jar-plugin:jar</td>
+<td>创建项目jar包</td>
+</tr>
+<tr>
+<td>install</td>
+<td>maven-install-plugin</td>
+<td>将项目输出构建安装到本地仓库</td>
+</tr>
+<tr>
+<td>deploy</td>
+<td>maven-deploy-plugin</td>
+<td>将项目输出构建安装到远程仓库</td>
+</tr>
+</tbody>
+</table>
+<h5 id="自定义绑定"><a href="#自定义绑定" class="headerlink" title="自定义绑定"></a>自定义绑定</h5><p>除了内置绑定外，用户还能自己选择将某个插件目标绑定到生命周期的某个阶段上。</p>
+<p>如：创建项目的源码jar包</p>
+<p>maven-source-plugin可以完成该任务，它的jar-no-fork目标能够将项目的主代码打包成jar文件，可以将其绑定到default生命周期的verify阶段上，在执行完集成测试后和安装构建之前创建源码jar包。</p>
+<h3 id="聚合与继承"><a href="#聚合与继承" class="headerlink" title="聚合与继承"></a>聚合与继承</h3><h4 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h4><p>如果想要一次构建两个项目，而不是到两个模块的目录下分别执行mvn命令。Maven聚合（或者成为多模块）就是为该需求服务的。</p>
+<p>需要额外再创建一个模块，通过其构建整个项目的所有模块。</p>
+<p>POM<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;groupId&gt;...&lt;/groupId&gt;</div><div class="line">&lt;artifactId&gt;...&lt;/artifactId&gt;</div><div class="line">&lt;version&gt;...&lt;/version&gt;</div><div class="line">&lt;packaging&gt;POM&lt;/packaging&gt;</div><div class="line">&lt;name&gt;...&lt;/name&gt;</div><div class="line">&lt;modules&gt;</div><div class="line">    &lt;module&gt;子模块1&lt;/module&gt;</div><div class="line">    &lt;module&gt;子模块2&lt;/module&gt;</div><div class="line">&lt;/modules&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>如果几个模块拥有很多相同的配置，就可以通过POM的继承的机制抽取出重复的配置。</p>
+<p>为了不给子模块引入多余的依赖，可以使用dependencyManagement元素。</p>
+<p>dependencyManagement元素可以约束dependencies下的依赖的使用。</p>
+<p>pluginManagement元素可以约束dependencies下的依赖的使用。</p>
+<h4 id="反应堆"><a href="#反应堆" class="headerlink" title="反应堆"></a>反应堆</h4><p>即构建各个模块的顺序，会根据依赖关系来构建。</p>
+<h5 id="裁剪反应堆"><a href="#裁剪反应堆" class="headerlink" title="裁剪反应堆"></a>裁剪反应堆</h5><p>-am  同时构建所列模块的依赖模块<br>-adm  同时构建依赖于所列模块的模块<br>-pl  构建指定的模块，模块间用逗号分隔<br>-rf  从指定的模块回复反应堆</p>
+<h3 id="使用Maven进行测试"><a href="#使用Maven进行测试" class="headerlink" title="使用Maven进行测试"></a>使用Maven进行测试</h3><h4 id="maven-surfire-plugin"><a href="#maven-surfire-plugin" class="headerlink" title="maven-surfire-plugin"></a>maven-surfire-plugin</h4><p>会自动执行测试源码路径下的所有符合一组命名模式的测试类。这组模式为：</p>
+<ul>
+<li>Test*.java 任意子目录下所有命名以Test开头的Java类。</li>
+<li>*Test.java 任意子目录下所有命名以Test结尾的Java类。</li>
+<li>*TestCase.java 任意子目录下所有命名以TestCase结尾的Java类。</li>
+</ul>
+<h4 id="跳过测试"><a href="#跳过测试" class="headerlink" title="跳过测试"></a>跳过测试</h4><ul>
+<li>mvn package-DskipTests</li>
+<li>也可通过设置插件配置跳过</li>
+</ul>
+<h4 id="测试报告"><a href="#测试报告" class="headerlink" title="测试报告"></a>测试报告</h4><p>maven-surefire-plugin等插件可以为用户以文件的形式生成丰富的测试报告。</p>
+<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;dependencies&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;exclusions&gt;</div><div class="line">            &lt;exclusion&gt;</div><div class="line">            &lt;!--排除依赖--&gt;</div><div class="line">            &lt;/exclusion&gt;</div><div class="line">        &lt;/exclusions&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">&lt;/dependencies&gt;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+          
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <span class="jiathis_txt">分享到：</span>
+  <a class="jiathis_button_weixin">微信</a>
+  <a class="jiathis_button_tsina">新浪微博</a>
+  <a class="jiathis_button_renren">人人网</a>
+  <a class="jiathis_button_qzone">QQ空间</a>
+  <a class="jiathis_button_douban">豆瓣</a>
+  <a class="jiathis_button_pocket">Pocket</a>
+  <a href="http://www.jiathis.com/share?uid=901656" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="https://v3.jiathis.com/code_mini/jia.js?uid=901656" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+          <div class="clearfix"></div>
+          <nav id="pagination">
+  
+  
+    <a href="/2016/10/09/spring-boot的简单搭建/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+  
+  <div class="clearfix"></div>
+</nav>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-thread-key="/2016/10/19/Maven实战读书笔记/"></div>
+<!-- Duoshuo Comment END -->
+  
+</section>
+
+
+</section>
+    <div class="clearfix"></div>
+
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2016 gblx
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="external">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="external">GitHub Pages</a>
+
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+
+
+
+    <script type="text/javascript">
+        (function(){
+
+            $(window).scroll(function(){
+
+                var scrollTop = $(window).scrollTop();
+                if ( scrollTop >200 ){
+                    $("#main-nav").removeClass('normal_mode').addClass('top_mode');
+                } else{
+                    $("#main-nav").removeClass('top_mode').addClass('normal_mode');
+                }
+
+            });
+
+        })();
+    </script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+
+    
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"gblw"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = 'https://static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $('.title').hover(
+      function() {      
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );   
+      }, 
+      function() {       
+        $(this).stop().animate({'marginLeft': '0px'}, 200);      
+      
+    });   
+
+  });
+
+</script>
+
+
+</body>
+</html>
