@@ -55,7 +55,7 @@
   
     <li><a href="/tags/spring/">spring</a><small>1</small></li>
   
-    <li><a href="/tags/其他/">其他</a><small>1</small></li>
+    <li><a href="/tags/其他/">其他</a><small>2</small></li>
   
     <li><a href="/tags/前端/">前端</a><small>1</small></li>
   
@@ -98,6 +98,69 @@
 </ul>
 	</div>
 </div>
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2017-03-24T06:25:21.000Z"><a href="/2017/03/24/使用amazon的ec2搭建shadowsocks/">周五, 3月 24 2017, 2:25:21 下午</a></time>
+
+  
+    <h1 class="title"><a href="/2017/03/24/使用amazon的ec2搭建shadowsocks/">使用amazon的ec2搭建shadowsocks</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/其他/">其他</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="启动EC2服务器"><a href="#启动EC2服务器" class="headerlink" title="启动EC2服务器"></a>启动EC2服务器</h3><p>利用国外免费的虚拟主机搭建服务器,在服务器上架自己的梯子.</p>
+<p>我们这里使用amazon的aws，主要因为它还算(bu)稳(yao)定(qian)，速度不是很快，但是上上google还是没问题的。<br>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2017/03/24/使用amazon的ec2搭建shadowsocks/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="https://acoderx.github.io/2017/03/24/使用amazon的ec2搭建shadowsocks/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2017/03/24/使用amazon的ec2搭建shadowsocks/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
 
 
   <article class="post">
@@ -666,68 +729,6 @@
           <div class="alignright"> 
             <a href="https://acoderx.github.io/2016/10/08/git操作/#comment" class="comment-link">
               <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2016/10/08/git操作/">&nbsp;
-              </span>
-            </a>
-          </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2016-10-08T03:15:02.000Z"><a href="/2016/10/08/单例模式/">周六, 10月 8 2016, 11:15:02 上午</a></time>
-
-  
-    <h1 class="title"><a href="/2016/10/08/单例模式/">单例模式</a></h1>
-  
-
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/设计模式/">设计模式</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <h3 id="饿汉模式"><a href="#饿汉模式" class="headerlink" title="饿汉模式"></a>饿汉模式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HungrySingleton</span> </span>&#123;</div><div class="line">    <span class="comment">//在类被加载时就初始化实例</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> HungrySingleton instance = <span class="keyword">new</span> HungrySingleton();</div><div class="line">    <span class="comment">/**</div><div class="line">     * 重写构造方法，使外部不能初始化</div><div class="line">     */</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">HungrySingleton</span><span class="params">()</span> </span>&#123;&#125;;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> HungrySingleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2016/10/08/单例模式/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-          <div class="alignright"> 
-            <a href="https://acoderx.github.io/2016/10/08/单例模式/#comment" class="comment-link">
-              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2016/10/08/单例模式/">&nbsp;
               </span>
             </a>
           </div>
