@@ -1,0 +1,43 @@
+menu:
+  Home: /
+  Archives: /archives
+
+# Sidebar
+sidebar: right
+widgets:
+- tag
+
+cover:
+  enable: true
+  url: http://oe9o9e68g.bkt.clouddn.com/background.jpg
+   
+excerpt_link: Read More
+
+full_format: 'ddd, MMM D YYYY, h:mm:ss a'
+
+addthis:
+  enable: true
+  pubid:
+  facebook:
+  twitter:
+  google: true
+  pinterest:
+
+fancybox: true
+
+google_analytics:
+rss:
+
+comment_provider: duoshuo
+
+# Duoshuo comment
+duoshuo:
+  short_name: gblw
+
+social:
+  github: https://github.com/aCoderX
+  weibo: http://weibo.com/5941521226
+  google_plus: 
+
+auto_change:
+  enable: true
