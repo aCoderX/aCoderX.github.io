@@ -9,7 +9,7 @@ widgets:
 
 cover:
   enable: true
-  url: http://oe9o9e68g.bkt.clouddn.com/background.jpg
+  url: /background.jpg
    
 excerpt_link: Read More
 
