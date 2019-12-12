@@ -1,0 +1,411 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>mysql mvcc | xudi</title>
+  <meta name="author" content="xudi">
+  
+  <meta name="description" content="介绍多版本控制，innodb支持
+解决的问题
+读操作不需要加锁，为了让读写不冲突。最早的数据库系统，只有读读之间可以并发，引入MVCC之后，只有写写之间相互阻塞，其他三种操作都可以并行
+
+MVCC解决了快照读的幻读问题">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="mysql mvcc">
+  <meta property="og:site_name" content="xudi">
+
+  
+    <meta property="og:image" content="undefined">
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="xudi" type="application/atom+xml">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+<link rel="stylesheet" href="/css/style.css">
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+</html>
+<body>
+  <header id="header" class='normal_mode'>
+    <nav id="main-nav">
+  <ul class='container'>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+  </header>
+  <div id="content" class="container">
+      <aside id="sidebar">
+          
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/java/">java</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>4</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>2</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/tags/其他/">其他</a><small>2</small></li>
+  
+    <li><a href="/tags/前端/">前端</a><small>1</small></li>
+  
+    <li><a href="/tags/设计模式/">设计模式</a><small>2</small></li>
+  
+    <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
+  
+    <li><a href="/tags/跨域/">跨域</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+      </aside>
+    <section id="main"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2019-12-12T12:28:04.000Z"><a href="/2019/12/12/mysql-mvcc/">周四, 12月 12 2019, 8:28:04 晚上</a></time>
+
+  
+    <h1 class="title">mysql mvcc</h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/mysql/">mysql</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>多版本控制，innodb支持</p>
+<h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><ul>
+<li><p>读操作不需要加锁，为了让读写不冲突。最早的数据库系统，只有读读之间可以并发，引入MVCC之后，只有写写之间相互阻塞，其他三种操作都可以并行</p>
+</li>
+<li><p>MVCC解决了快照读的幻读问题</p>
+<a id="more"></a>
+
+</li>
+</ul>
+<h3 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h3><p>在每行的存储中，会多出四列存储，存在聚簇索引中</p>
+<ul>
+<li>data_trx_id: 该行最近修改的事务id</li>
+<li>data_roll_ptr 回滚指针，只想undo log中的上次修改前的历史数据</li>
+<li>db_row_id : 如果没有规定主键，默认的主键</li>
+<li>delete_bit ：是否删除</li>
+</ul>
+<h3 id="MVCC工作流程"><a href="#MVCC工作流程" class="headerlink" title="MVCC工作流程"></a>MVCC工作流程</h3><p>场景：将id=1的数据的a字段，从10设置为20</p>
+<ol>
+<li>给id=1的行记录加上排他锁</li>
+<li>将原本的行拷贝到undo_log中，其中data_trx_id和data_roll_ptr不动</li>
+<li>修改该行的值，更新data_trx_id为修改记录的事务id，将data_roll_ptr指向刚刚undo log链中的旧版本记录，这样undo log就会形成一个链表</li>
+<li>记录redo log,包括undo log中的修改</li>
+</ol>
+<h3 id="一致性读的原理-ReadView"><a href="#一致性读的原理-ReadView" class="headerlink" title="一致性读的原理-ReadView"></a>一致性读的原理-ReadView</h3><h4 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h4><blockquote>
+<p>InnoDB支持MVCC多版本，其中RC（Read Committed）和RR（Repeatable Read）隔离级别是利用consistent read view（一致读视图）方式支持的。 所谓consistent read view就是在某一时刻给事务系统trx_sys打snapshot（快照），把当时trx_sys状态（包括活跃读写事务数组）记下来，之后的所有读操作根据其事务ID（即trx_id）与snapshot中的trx_sys的状态作比较，以此判断read view对于事务的可见性。</p>
+</blockquote>
+<h4 id="ReadView结构"><a href="#ReadView结构" class="headerlink" title="ReadView结构"></a>ReadView结构</h4><ul>
+<li>up_limit_id：未提交并活跃的事务中最小的XID</li>
+<li>low_limit_id：<strong>所有已提交事务中最大的XID，加1</strong></li>
+<li>low_limit_no：最小活跃事务id，用于purge去清除已删除记录</li>
+<li>rw_trx_ids：读写事务数组，所有活跃的事务id列表</li>
+</ul>
+<h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><p>RR和RC的判断是否可见的逻辑相同，区别在于RR级别下，是第一条select语句执行时，生成的ReadView，后续的所有select都复用这个ReadView；而RC级别下，每一次select都会去生成一次ReadView。</p>
+<h5 id="判断是否可见逻辑"><a href="#判断是否可见逻辑" class="headerlink" title="判断是否可见逻辑"></a>判断是否可见逻辑</h5><ol>
+<li>如果被访问数据的trx_id小于up_limit_id，表示该记录最后一次修改是在read_view创建之前，可见</li>
+<li>如果trx_id大于等于low_limit_id，表示该记录的最后一次修改是在read_view创建之后，不可见，需要通过roll_ptr指针查询历史数据，然后再根据历史数据的trx_id继续计算可见性</li>
+<li>如果trx_id落在[up_limit_id,low_limit_id)，需要在活跃读写事务组里查找trx_id，如果存在则不可见；如果不存在，则表示已经提交，可见</li>
+<li>得到该条记录的可见结果之后，如果该记录的delete_flag为true，则说明记录已被删除，不返回。否则正常返回</li>
+</ol>
+<h4 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h4><p>假设id=1的记录trx_id为10，原本的age为18，（19为之前最后一次提交的事务id）</p>
+<table>
+<thead>
+<tr>
+<th>事务20</th>
+<th>事务21</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>begin;</td>
+<td></td>
+</tr>
+<tr>
+<td>1.select age from test where id=1; (result=18)</td>
+<td></td>
+</tr>
+<tr>
+<td>‘’</td>
+<td>2.begin;update test set age = 23 where id=1;commit;</td>
+</tr>
+<tr>
+<td>3.select (result=23)</td>
+<td></td>
+</tr>
+</tbody></table>
+<h5 id="RC"><a href="#RC" class="headerlink" title="RC"></a>RC</h5><ol>
+<li>生成ReadView,up_limit_id=20，low_limit_id=19+1，rw_trx_ids为[20]，查询时发现10&lt;20，所以查到数据18</li>
+<li>开启事务21修改age为23并提交。更新id=1的数据的trx_id=21</li>
+<li>由于是RC重新生成ReadView，up_limit_id=20，low_limit_id=21+1，rw_trx_ids为[20]，发现 20(up_limit_id)&lt;=21(trx_id)&lt;22(low_limit_id),所以可见</li>
+</ol>
+<h5 id="RR"><a href="#RR" class="headerlink" title="RR"></a>RR</h5><ol>
+<li>生成ReadView,up_limit_id=20，low_limit_id=19+1，rw_trx_ids为[20]，查询时发现10&lt;20，所以查到数据18</li>
+<li>开启事务21修改age为23并提交。更新id=1的数据的trx_id=21</li>
+<li>由于是RR使用原本的ReadView，发现21(trx_id)&gt;=20(low_limit_id),所以不可见</li>
+</ol>
+<h3 id="二级索引和mvcc"><a href="#二级索引和mvcc" class="headerlink" title="二级索引和mvcc"></a>二级索引和mvcc</h3><h4 id="二级索引结构"><a href="#二级索引结构" class="headerlink" title="二级索引结构"></a>二级索引结构</h4><p>不像聚簇索引增加了四列，只增加了</p>
+<ul>
+<li>delete_bit ：删除状态</li>
+<li>db_max_id : 修改索引页的最大事务id</li>
+</ul>
+<h4 id="流程-1"><a href="#流程-1" class="headerlink" title="流程"></a>流程</h4><ul>
+<li>当update涉及到二级索引的键值时，将旧的索引del设置成true，创建一条新的二级索引即可</li>
+<li>但是这样，就会导致查询的时候会查出多条二级索引，并且无法判断该条数据的可见性，就需要把多条的二级索引都回到聚簇索引中判断可见性</li>
+<li>这时候，db_max_id的功能就显示出来了，db_max_id&lt;up_limit_id，则表示在ReadView创建前被修改的，所以是可见的；否则就需要回到聚簇索引中去判断可见性</li>
+</ul>
+<h3 id="为什么说mvcc不能解决幻读"><a href="#为什么说mvcc不能解决幻读" class="headerlink" title="为什么说mvcc不能解决幻读"></a>为什么说mvcc不能解决幻读</h3><p>mvcc只是解决的快照读的幻读问题。Mysql官方给出的幻读解释是：只要在一个事务中，第二次select多出了row就算幻读。</p>
+<h4 id="快照读"><a href="#快照读" class="headerlink" title="快照读"></a>快照读</h4><p>MVCC的读取方式</p>
+<h4 id="当前读"><a href="#当前读" class="headerlink" title="当前读"></a>当前读</h4><p>读取最新的数据版本，并且对读取的记录加锁, 阻塞其他事务同时改动相同记录</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　select...lock <span class="keyword">in</span> <span class="keyword">share</span> <span class="keyword">mode</span> (共享读锁)</span><br><span class="line">　　select...for <span class="keyword">update</span></span><br><span class="line">　　<span class="keyword">update</span> , <span class="keyword">delete</span> , <span class="keyword">insert</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="举例1"><a href="#举例1" class="headerlink" title="举例1"></a>举例1</h4><p>RR级别，假设刚开始表里只有id=1 一条数据</p>
+<table>
+<thead>
+<tr>
+<th>事务20</th>
+<th>事务21</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>begin;</td>
+<td></td>
+</tr>
+<tr>
+<td>1.select * from test; (只有一条数据)</td>
+<td></td>
+</tr>
+<tr>
+<td>‘’</td>
+<td>2.begin;insert into test value (2,23);commit;</td>
+</tr>
+<tr>
+<td>3.select * from test;（只有一条数据）</td>
+<td></td>
+</tr>
+<tr>
+<td>4.select * from test where id =2 for update;（能够查出条数据）</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>因为4是当前读，读取的是最新的记录</p>
+<h4 id="举例2"><a href="#举例2" class="headerlink" title="举例2"></a>举例2</h4><p>RR级别，假设刚开始表里只有id=1 一条数据</p>
+<table>
+<thead>
+<tr>
+<th>事务20</th>
+<th>事务21</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>begin;</td>
+<td></td>
+</tr>
+<tr>
+<td>1.select * from test where id &gt;0; (只有一条数据)</td>
+<td></td>
+</tr>
+<tr>
+<td>‘’</td>
+<td>2.begin;insert into test value (2,23);commit;</td>
+</tr>
+<tr>
+<td>3.select * from test where id &gt;0;（只有一条数据）</td>
+<td></td>
+</tr>
+<tr>
+<td>4.update test set age=25 where id =2;（修改成功）</td>
+<td></td>
+</tr>
+<tr>
+<td>5.select * from test where id &gt;0;（会查出两条数据）</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>由于4修改了id=2的数据的trx_id，所以在5中发现trx_id=当前事务id，所以能够查到</p>
+<h4 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h4><h5 id="在快照读读情况下，mysql通过mvcc来避免幻读。"><a href="#在快照读读情况下，mysql通过mvcc来避免幻读。" class="headerlink" title="在快照读读情况下，mysql通过mvcc来避免幻读。"></a>在快照读读情况下，mysql通过mvcc来避免幻读。</h5><h5 id="在当前读读情况下，mysql通过next-key来避免幻读。"><a href="#在当前读读情况下，mysql通过next-key来避免幻读。" class="headerlink" title="在当前读读情况下，mysql通过next-key来避免幻读。"></a>在当前读读情况下，mysql通过next-key来避免幻读。</h5><p>在刚刚举例2中，应该在1select的时候直接加上next-key for update,进入当前读，这样就没有事务21去插入的问题了</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/64576887" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/64576887</a></li>
+<li><a href="http://mysql.taobao.org/monthly/2017/10/01/" target="_blank" rel="noopener">http://mysql.taobao.org/monthly/2017/10/01/</a></li>
+<li><a href="http://mysql.taobao.org/monthly/2018/03/01/" target="_blank" rel="noopener">http://mysql.taobao.org/monthly/2018/03/01/</a></li>
+<li><a href="https://www.cnblogs.com/stevenczp/p/8018986.html" target="_blank" rel="noopener">https://www.cnblogs.com/stevenczp/p/8018986.html</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+          
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <span class="jiathis_txt">分享到：</span>
+  <a class="jiathis_button_weixin">微信</a>
+  <a class="jiathis_button_tsina">新浪微博</a>
+  <a class="jiathis_button_renren">人人网</a>
+  <a class="jiathis_button_qzone">QQ空间</a>
+  <a class="jiathis_button_douban">豆瓣</a>
+  <a class="jiathis_button_pocket">Pocket</a>
+  <a href="http://www.jiathis.com/share?uid=901656" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="https://v3.jiathis.com/code_mini/jia.js?uid=901656" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+          <div class="clearfix"></div>
+          <nav id="pagination">
+  
+  
+    <a href="/2017/03/26/外挂硬盘（U盘）中安装ubuntu/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+  
+  <div class="clearfix"></div>
+</nav>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-thread-key="/2019/12/12/mysql-mvcc/"></div>
+<!-- Duoshuo Comment END -->
+  
+</section>
+
+
+</section>
+    <div class="clearfix"></div>
+
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2019 xudi
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="noopener">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="noopener">GitHub Pages</a>
+
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+
+
+
+    <script type="text/javascript">
+        (function(){
+
+            $(window).scroll(function(){
+
+                var scrollTop = $(window).scrollTop();
+                if ( scrollTop >200 ){
+                    $("#main-nav").removeClass('normal_mode').addClass('top_mode');
+                } else{
+                    $("#main-nav").removeClass('top_mode').addClass('normal_mode');
+                }
+
+            });
+
+        })();
+    </script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+
+    
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"gblw"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = 'https://static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $('.title').hover(
+      function() {      
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );   
+      }, 
+      function() {       
+        $(this).stop().animate({'marginLeft': '0px'}, 200);      
+      
+    });   
+
+  });
+
+</script>
+
+
+</body>
+</html>
