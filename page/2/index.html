@@ -1,0 +1,671 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>第 2 页 | JustACoder</title>
+  <meta name="author" content="xudi">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="JustACoder">
+
+  
+    <meta property="og:image" content="undefined">
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="JustACoder" type="application/atom+xml">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+<link rel="stylesheet" href="/css/style.css">
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+</html>
+<body>
+  <header id="header" class='normal_mode'>
+    <nav id="main-nav">
+  <ul class='container'>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+  </header>
+  <div id="content" class="container">
+      <aside id="sidebar">
+          
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>4</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>2</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/tags/其他/">其他</a><small>2</small></li>
+  
+    <li><a href="/tags/前端/">前端</a><small>1</small></li>
+  
+    <li><a href="/tags/设计模式/">设计模式</a><small>2</small></li>
+  
+    <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
+  
+    <li><a href="/tags/跨域/">跨域</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+      </aside>
+    <section id="main"><div id="cover">
+	<div id="profile" alt="/background.jpg">
+		<a href="/">
+			<div class="logo">
+				<img src="/logo.png" alt="Profile Picture">
+			</div>
+			<div id="title">JustACoder</div>
+		</a>
+
+		
+		 <ul class="my-socials">
+  
+  <li>
+  	<a href="https://github.com/aCoderX" class="github" target="_blank">
+  		<i class="fa fa-github"></i>
+  	</a>
+  </li>
+  
+  <li>
+  	<a href="http://weibo.com/5941521226" class="weibo" target="_blank">
+  		<i class="fa fa-weibo"></i>
+  	</a>
+  </li>
+  
+ 
+</ul>
+	</div>
+</div>
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2016-10-08T13:57:02.000Z"><a href="/2016/10/08/jsonp/">周六, 10月 8 2016, 9:57:02 晚上</a></time>
+
+  
+    <h1 class="title"><a href="/2016/10/08/jsonp/">jsonp</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/javascript/">javascript</a>, <a href="/tags/跨域/">跨域</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="jsonp客户端"><a href="#jsonp客户端" class="headerlink" title="jsonp客户端"></a>jsonp客户端</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过script实现jsonp</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">CreateScript</span>(<span class="params">src</span>) </span>&#123;</span><br><span class="line">	$(<span class="string">"&lt;script&gt;&lt;//script&gt;"</span>).attr(<span class="string">"src"</span>,src).appendTo(<span class="string">"body"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//回调函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">JSONcallback</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//点击按钮触发</span></span><br><span class="line">$(<span class="string">"#getOtherDomainThings"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	CreateScript(<span class="string">"http://localhost:8080/JSONP/getJSON?callback=JSONcallback"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2016/10/08/jsonp/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="https://acoderx.github.io/2016/10/08/jsonp/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2016/10/08/jsonp/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2016-10-08T13:05:28.000Z"><a href="/2016/10/08/正则表达式/">周六, 10月 8 2016, 9:05:28 晚上</a></time>
+
+  
+    <h1 class="title"><a href="/2016/10/08/正则表达式/">正则表达式</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/其他/">其他</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="基本内容"><a href="#基本内容" class="headerlink" title="基本内容"></a>基本内容</h3><h4 id="定界符"><a href="#定界符" class="headerlink" title="定界符"></a>定界符</h4><p>表示一个正则表达式的开始与结束 </p>
+<p>如（/[0-9]/）<br></p>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2016/10/08/正则表达式/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="https://acoderx.github.io/2016/10/08/正则表达式/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2016/10/08/正则表达式/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2016-10-08T12:17:50.000Z"><a href="/2016/10/08/git操作/">周六, 10月 8 2016, 8:17:50 晚上</a></time>
+
+  
+    <h1 class="title"><a href="/2016/10/08/git操作/">git操作</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/git/">git</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><h5 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h5><p>仓库当前的状态</p>
+<h5 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h5><p>查看difference(修改的地方)<br></p>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2016/10/08/git操作/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="https://acoderx.github.io/2016/10/08/git操作/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2016/10/08/git操作/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2016-10-08T03:15:02.000Z"><a href="/2016/10/08/单例模式/">周六, 10月 8 2016, 11:15:02 上午</a></time>
+
+  
+    <h1 class="title"><a href="/2016/10/08/单例模式/">单例模式</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/设计模式/">设计模式</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="饿汉模式"><a href="#饿汉模式" class="headerlink" title="饿汉模式"></a>饿汉模式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HungrySingleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> HungrySingleton instance = <span class="keyword">new</span> HungrySingleton();</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    * 重写默认构造方法，防止被外界实例化</span></span><br><span class="line"><span class="comment">    * */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">HungrySingleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> HungrySingleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="懒汉模式"><a href="#懒汉模式" class="headerlink" title="懒汉模式"></a>懒汉模式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LazySingleton</span> </span>&#123;</span><br><span class="line">    <span class="comment">//volatile为了确保修改对内存的可见</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> LazySingleton instance;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">LazySingleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//可以传入参数进行构造</span></span><br><span class="line">    <span class="comment">//只有未初始化的时候需要加锁，所以不应该在整个方法上加锁</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LazySingleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (LazySingleton<span class="class">.<span class="keyword">class</span>)</span>&#123;</span><br><span class="line">                <span class="comment">//双重检验锁，防止其他线程在未能获得锁的时候进入了第一个if导致多次初始化</span></span><br><span class="line">                <span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> LazySingleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="静态内部类实现单例"><a href="#静态内部类实现单例" class="headerlink" title="静态内部类实现单例"></a>静态内部类实现单例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerSingleton</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">InnerSingleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> InnerSingleton instance = <span class="keyword">new</span> InnerSingleton();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> InnerSingleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Singleton.instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="内部静态枚举实现单例"><a href="#内部静态枚举实现单例" class="headerlink" title="内部静态枚举实现单例"></a>内部静态枚举实现单例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnumSingleton</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">EnumSingleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> EnumSingleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Singleton.INSTANCE.getInstance();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">enum</span> Singleton&#123;</span><br><span class="line">        INSTANCE;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> EnumSingleton instance;</span><br><span class="line">        <span class="comment">//jvm保证只调用一次</span></span><br><span class="line">        Singleton()&#123;</span><br><span class="line">            instance = <span class="keyword">new</span> EnumSingleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> EnumSingleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> instance;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><h4 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h4><ul>
+<li>优点：实现简单，天生的线程安全</li>
+<li>缺点：不能延迟加载，不能防止反射、反序列化</li>
+</ul>
+<h4 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h4><ul>
+<li>优点：延迟加载</li>
+<li>缺点：需要在代码中确保线程安全，不能防止反射、反序列化</li>
+</ul>
+<h4 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h4><ul>
+<li>优点：延迟加载、线程安全</li>
+<li>缺点：不能防止反射、序列化</li>
+</ul>
+<h4 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h4><ul>
+<li>目前最安全的单例，有jvm来确保线程安全、反射安全、反序列化安全</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2016/10/08/单例模式/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="https://acoderx.github.io/2016/10/08/单例模式/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2016/10/08/单例模式/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2016-10-08T03:10:48.000Z"><a href="/2016/10/08/设计模式概述/">周六, 10月 8 2016, 11:10:48 上午</a></time>
+
+  
+    <h1 class="title"><a href="/2016/10/08/设计模式概述/">设计模式概述</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/设计模式/">设计模式</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h3><h5 id="工厂模式-3种"><a href="#工厂模式-3种" class="headerlink" title="工厂模式 3种"></a>工厂模式 3种</h5><h5 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h5><p>(注意synchronized关键字的使用)</p>
+<ul>
+<li>饿汉模式：在类加载的时候就把对象初始化(线程安全)</li>
+<li>懒汉模式：在调用获取对象的方法时判断时候存在该对象，不存在再创建(线程不安全)</li></ul>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2016/10/08/设计模式概述/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="https://acoderx.github.io/2016/10/08/设计模式概述/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2016/10/08/设计模式概述/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2016-10-08T02:11:29.000Z"><a href="/2016/10/08/js面向对象/">周六, 10月 8 2016, 10:11:29 上午</a></time>
+
+  
+    <h1 class="title"><a href="/2016/10/08/js面向对象/">js面向对象</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/javascript/">javascript</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="字面式-literal-notation-对象声明"><a href="#字面式-literal-notation-对象声明" class="headerlink" title="字面式 (literal notation) 对象声明"></a>字面式 (literal notation) 对象声明</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">"张三"</span>,</span><br><span class="line">    age: <span class="number">26</span>,</span><br><span class="line">    gender: <span class="string">"男"</span>,</span><br><span class="line">    eat: <span class="function"><span class="keyword">function</span>(<span class="params">stuff</span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">"我在吃"</span> + stuff);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">person.height = <span class="number">176</span>;</span><br><span class="line"><span class="keyword">delete</span> person[<span class="string">"age"</span>];</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2016/10/08/js面向对象/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="https://acoderx.github.io/2016/10/08/js面向对象/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2016/10/08/js面向对象/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2016-10-07T14:52:31.000Z"><a href="/2016/10/07/大型分布式网站架构读书笔记/">周五, 10月 7 2016, 10:52:31 晚上</a></time>
+
+  
+    <h1 class="title"><a href="/2016/10/07/大型分布式网站架构读书笔记/">大型分布式网站架构读书笔记</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/读书笔记/">读书笔记</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h2 id="面向服务的体系架构"><a href="#面向服务的体系架构" class="headerlink" title="面向服务的体系架构"></a>面向服务的体系架构</h2><blockquote>
+<p>RPC全称是Remote Process Call，即远程过程调用</p>
+</blockquote>
+<h4 id="基于TCP协议的RPC"><a href="#基于TCP协议的RPC" class="headerlink" title="基于TCP协议的RPC"></a>基于TCP协议的RPC</h4><p>通过Socket实现</p>
+<ul>
+<li>服务消费者通过Socket传送要调用的接口名称、方法名称、参数类型和参数对象给服务端</li>
+<li>服务端接受到接口名称、方法名称和参数再通过反射调用方法并返回数据。</li></ul>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2016/10/07/大型分布式网站架构读书笔记/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="https://acoderx.github.io/2016/10/07/大型分布式网站架构读书笔记/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2016/10/07/大型分布式网站架构读书笔记/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>上一页</a>
+  
+  
+  <div class="clearfix"></div>
+</nav>
+
+<script src="/js/jquery.anystretch.min.js"></script>
+<script src="/js/cover.js"></script>
+</section>
+    <div class="clearfix"></div>
+
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2019 xudi
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="noopener">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="noopener">GitHub Pages</a>
+
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+
+
+
+    <script type="text/javascript">
+        (function(){
+
+            $(window).scroll(function(){
+
+                var scrollTop = $(window).scrollTop();
+                if ( scrollTop >200 ){
+                    $("#main-nav").removeClass('normal_mode').addClass('top_mode');
+                } else{
+                    $("#main-nav").removeClass('top_mode').addClass('normal_mode');
+                }
+
+            });
+
+        })();
+    </script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+
+    
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"gblw"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = 'https://static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $('.title').hover(
+      function() {      
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );   
+      }, 
+      function() {       
+        $(this).stop().animate({'marginLeft': '0px'}, 200);      
+      
+    });   
+
+  });
+
+</script>
+
+
+</body>
+</html>

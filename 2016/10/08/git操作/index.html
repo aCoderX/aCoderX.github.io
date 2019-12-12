@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>git操作 | JustACoder</title>
+  <meta name="author" content="xudi">
+  
+  <meta name="description" content="基本操作git status仓库当前的状态
+git diff查看difference(修改的地方)">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="git操作">
+  <meta property="og:site_name" content="JustACoder">
+
+  
+    <meta property="og:image" content="undefined">
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="JustACoder" type="application/atom+xml">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+<link rel="stylesheet" href="/css/style.css">
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+</html>
+<body>
+  <header id="header" class='normal_mode'>
+    <nav id="main-nav">
+  <ul class='container'>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+  </header>
+  <div id="content" class="container">
+      <aside id="sidebar">
+          
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/git/">git</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>2</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>4</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>2</small></li>
+  
+    <li><a href="/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/tags/其他/">其他</a><small>2</small></li>
+  
+    <li><a href="/tags/前端/">前端</a><small>1</small></li>
+  
+    <li><a href="/tags/设计模式/">设计模式</a><small>2</small></li>
+  
+    <li><a href="/tags/读书笔记/">读书笔记</a><small>2</small></li>
+  
+    <li><a href="/tags/跨域/">跨域</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+      </aside>
+    <section id="main"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2016-10-08T12:17:50.000Z"><a href="/2016/10/08/git操作/">周六, 10月 8 2016, 8:17:50 晚上</a></time>
+
+  
+    <h1 class="title">git操作</h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/git/">git</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><h5 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h5><p>仓库当前的状态</p>
+<h5 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h5><p>查看difference(修改的地方)<br> <a id="more"></a></p>
+<h5 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h5><p>把文件修改添加到暂存区</p>
+<h5 id="git-commit-m-“”"><a href="#git-commit-m-“”" class="headerlink" title="git commit -m “”"></a>git commit -m “”</h5><p>提交（把暂存区的所有内容提交到当前分支）</p>
+<p><img src="http://oe9o9e68g.bkt.clouddn.com/git_commit.bmp" alt="git_commit"></p>
+<h5 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h5><p>查看历史记录</p>
+<h5 id="git-reset-–hard-HEAD"><a href="#git-reset-–hard-HEAD" class="headerlink" title="git reset –hard HEAD^"></a>git reset –hard HEAD^</h5><p>用HEAD表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。</p>
+<h5 id="git-reset-–hard-3628164"><a href="#git-reset-–hard-3628164" class="headerlink" title="git reset –hard 3628164"></a>git reset –hard 3628164</h5><h5 id="git-reflog"><a href="#git-reflog" class="headerlink" title="git reflog"></a>git reflog</h5><p>如果回退到以前的版本，还想回到原本的最新的版本，并且已经关闭了原本页面看不到原本的commit id，用该命令看id</p>
+<h5 id="git-checkout-–-readme-txt"><a href="#git-checkout-–-readme-txt" class="headerlink" title="git checkout – readme.txt"></a>git checkout – readme.txt</h5><p>就是让这个文件回到最近一次git commit或git add时的状态（还没有add）</p>
+<h5 id="git-reset-HEAD-file"><a href="#git-reset-HEAD-file" class="headerlink" title="git reset HEAD file"></a>git reset HEAD file</h5><p>命令既可以回退版本，也可以把暂存区的修改回退到工作区（add之后）</p>
+<h5 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h5><p>从版本库中删除该文件</p>
+<h5 id="git-remote-add-origin-git-github-com-地址-本地项目名-git"><a href="#git-remote-add-origin-git-github-com-地址-本地项目名-git" class="headerlink" title="git remote add origin git@github.com:地址/本地项目名.git"></a>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:地址/本地项目名.git</h5><p>将本地仓库管理guthub远程仓库</p>
+<h5 id="git-push-u-origin-master"><a href="#git-push-u-origin-master" class="headerlink" title="git push -u origin master"></a>git push -u origin master</h5><p>把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。远程库的名字就是origin，这是Git默认的叫法。我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令</p>
+<h5 id="git-clone-git-github-com-地址-项目名-git"><a href="#git-clone-git-github-com-地址-项目名-git" class="headerlink" title="git clone git@github.com:地址/项目名.git"></a>git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:地址/项目名.git</h5><p>克隆远程库到本地</p>
+<p>GitHub给出的地址不止一个，还可以用<a href="https://github.com/michaelliao/gitskills.git这样的地址。实际上，Git支持多种协议，默认的git://使用ssh（快），但也可以使用https等其他协议。" target="_blank" rel="noopener">https://github.com/michaelliao/gitskills.git这样的地址。实际上，Git支持多种协议，默认的git://使用ssh（快），但也可以使用https等其他协议。</a></p>
+<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><blockquote>
+<p>分支在实际中有什么用呢？假设你准备开发一个新功能，但是需要两周才能完成，第一周你写了50%的代码，如果立刻提交，由于代码还没写完，不完整的代码库会导致别人不能干活了。如果等代码全部写完再一次提交，又存在丢失每天进度的巨大风险。</p>
+</blockquote>
+<h5 id="git-checkout-b-dev"><a href="#git-checkout-b-dev" class="headerlink" title="git checkout -b dev"></a>git checkout -b dev</h5><p>创建dev分支并切换到dev分支</p>
+<p>相当于以下两条命令：</p>
+<ul>
+<li>$ git branch dev （创建分支） </li>
+<li>$ git checkout dev  （切换分支） </li>
+</ul>
+<h5 id="git-branch命令查看当前分支"><a href="#git-branch命令查看当前分支" class="headerlink" title="git branch命令查看当前分支"></a>git branch命令查看当前分支</h5><h5 id="git-merge-dev"><a href="#git-merge-dev" class="headerlink" title="git merge dev"></a>git merge dev</h5><p>切换回master分支之后合并dev分支</p>
+<p>合并时冲突需要手动修改后再提交     Git用&lt;&lt;&lt;&lt;&lt;&lt;&lt;，=======，&gt;&gt;&gt;&gt;&gt;&gt;&gt;标记出不同分支的内容</p>
+<h5 id="git-branch-d-dev"><a href="#git-branch-d-dev" class="headerlink" title="git branch -d dev"></a>git branch -d dev</h5><p>删除dev分支</p>
+<h5 id="git-log-–graph-–pretty-oneline-–abbrev-commit"><a href="#git-log-–graph-–pretty-oneline-–abbrev-commit" class="headerlink" title="git log –graph –pretty=oneline –abbrev-commit"></a>git log –graph –pretty=oneline –abbrev-commit</h5><p>查看分支历史</p>
+<p>通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。</p>
+<p>如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。</p>
+<h5 id="git-merge-–no-ff-m-“merge-with-no-ff”-dev"><a href="#git-merge-–no-ff-m-“merge-with-no-ff”-dev" class="headerlink" title="git merge –no-ff -m “merge with no-ff” dev"></a>git merge –no-ff -m “merge with no-ff” dev</h5><p>合并分支时，加上–no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。<br><img src="http://oe9o9e68g.bkt.clouddn.com/git_merge.bmp" alt="merge"></p>
+<p>修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；</p>
+<p>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。<br>（也可用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除）</p>
+<h5 id="git-stash-list"><a href="#git-stash-list" class="headerlink" title="git stash list"></a>git stash list</h5><p>用于查看stash保存的现场</p>
+<p>如果要丢弃一个没有被合并过的分支，可以通过git branch -D <name>强行删除。</name></p>
+<h5 id="多人合作的提交和拉取更新"><a href="#多人合作的提交和拉取更新" class="headerlink" title="多人合作的提交和拉取更新"></a>多人合作的提交和拉取更新</h5><ol>
+<li>首先，可以试图用git push origin branch-name推送自己的修改；</li>
+<li>如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；</li>
+<li>如果合并有冲突，则解决冲突，并在本地提交；</li>
+<li>没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！</li>
+</ol>
+<p>如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令git branch –set-upstream branch-name origin/branch-name。</p>
+<h3 id="tag"><a href="#tag" class="headerlink" title="tag"></a>tag</h3><p>相当于某个版本的快照</p>
+<p>tag就是一个让人容易记住的有意义的名字，它跟某个commit绑在一起。</p>
+<h5 id="git-tag"><a href="#git-tag" class="headerlink" title="git tag "></a>git tag <name></name></h5><p>用于新建一个标签，默认为HEAD，也可以指定一个commit id；</p>
+<h5 id="git-tag-a-m-“blablabla…”"><a href="#git-tag-a-m-“blablabla…”" class="headerlink" title="git tag -a  -m “blablabla…”"></a>git tag -a <tagname> -m “blablabla…”</tagname></h5><p>可以指定标签信息；</p>
+<h5 id="git-tag-s-m"><a href="#git-tag-s-m" class="headerlink" title="git tag -s  -m"></a>git tag -s <tagname> -m</tagname></h5><p>“blablabla…”可以用PGP签名标签；</p>
+<h5 id="git-tag-1"><a href="#git-tag-1" class="headerlink" title="git tag"></a>git tag</h5><p>可以查看所有标签。</p>
+<h5 id="git-show"><a href="#git-show" class="headerlink" title="git show "></a>git show <tagname></tagname></h5><p>查看标签信息</p>
+<h5 id="git-push-origin"><a href="#git-push-origin" class="headerlink" title="git push origin "></a>git push origin <tagname></tagname></h5><p>可以推送一个本地标签；</p>
+<h5 id="git-push-origin-–tags"><a href="#git-push-origin-–tags" class="headerlink" title="git push origin –tags"></a>git push origin –tags</h5><p>可以推送全部未推送过的本地标签；</p>
+<h5 id="git-tag-d"><a href="#git-tag-d" class="headerlink" title="git tag -d "></a>git tag -d <tagname></tagname></h5><p>可以删除一个本地标签；</p>
+<h5 id="git-push-origin-refs-tags"><a href="#git-push-origin-refs-tags" class="headerlink" title="git push origin :refs/tags/"></a>git push origin :refs/tags/<tagname></tagname></h5><p>可以删除一个远程标签。</p>
+<h3 id="使用github-fork"><a href="#使用github-fork" class="headerlink" title="使用github fork"></a>使用github fork</h3><p>将开源项目fork到自己的github账号，然后，从自己的账号下clone：<br>git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:michaelliao/bootstrap.git</p>
+<p>希望bootstrap的官方库能接受你的修改，你就可以在GitHub上发起一个pull request。当然，对方是否接受你的pull request就不一定了<br><img src="http://oe9o9e68g.bkt.clouddn.com/git_github_pull.bmp" alt="github_pull"></p>
+<h5 id="git-config-–global-color-ui-true"><a href="#git-config-–global-color-ui-true" class="headerlink" title="git config –global color.ui true"></a>git config –global color.ui true</h5><p>让Git显示颜色</p>
+<h3 id="忽略特殊文件"><a href="#忽略特殊文件" class="headerlink" title="忽略特殊文件"></a>忽略特殊文件</h3><p>忽略某些文件时，需要在Git工作区的根目录下创建一个特殊的.gitignore文件（比如忽略.class文件）</p>
+<p>.gitignore文件本身要放到版本库里，并且可以对.gitignore做版本管理！</p>
+<h5 id="git-add-f-App-class"><a href="#git-add-f-App-class" class="headerlink" title="git add -f App.class"></a>git add -f App.class</h5><p>不管忽略文件强制提交</p>
+<h5 id="git-check-ignore-v-App-class"><a href="#git-check-ignore-v-App-class" class="headerlink" title="git check-ignore -v App.class"></a>git check-ignore -v App.class</h5><p>找出忽略文件在哪一行</p>
+<h3 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h3><h5 id="git-config-–global-alias-st-status"><a href="#git-config-–global-alias-st-status" class="headerlink" title="git config –global alias.st status"></a>git config –global alias.st status</h5><p>将status设置成st   –global表名当面的别名适用于整个用户 不加则使用户当前库</p>
+<p>别名的删除和修改，通过修改配置文件，库级别的放在每个仓库的Git配置文件都放在.git/config文件中，用户级别的放在当前用户的Git配置文件放在用户主目录下的一个隐藏文件.gitconfig中</p>
+<p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013752340242354807e192f02a44359908df8a5643103a000" target="_blank" rel="noopener">参考地址</a></p>
+
+      
+    </div>
+    <footer>
+      
+          
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <span class="jiathis_txt">分享到：</span>
+  <a class="jiathis_button_weixin">微信</a>
+  <a class="jiathis_button_tsina">新浪微博</a>
+  <a class="jiathis_button_renren">人人网</a>
+  <a class="jiathis_button_qzone">QQ空间</a>
+  <a class="jiathis_button_douban">豆瓣</a>
+  <a class="jiathis_button_pocket">Pocket</a>
+  <a href="http://www.jiathis.com/share?uid=901656" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="https://v3.jiathis.com/code_mini/jia.js?uid=901656" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+          <div class="clearfix"></div>
+          <nav id="pagination">
+  
+    <a href="/2016/10/08/正则表达式/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
+  
+  
+    <a href="/2016/10/08/单例模式/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+  
+  <div class="clearfix"></div>
+</nav>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-thread-key="/2016/10/08/git操作/"></div>
+<!-- Duoshuo Comment END -->
+  
+</section>
+
+
+</section>
+    <div class="clearfix"></div>
+
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2019 xudi
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="noopener">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="noopener">GitHub Pages</a>
+
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+
+
+
+    <script type="text/javascript">
+        (function(){
+
+            $(window).scroll(function(){
+
+                var scrollTop = $(window).scrollTop();
+                if ( scrollTop >200 ){
+                    $("#main-nav").removeClass('normal_mode').addClass('top_mode');
+                } else{
+                    $("#main-nav").removeClass('top_mode').addClass('normal_mode');
+                }
+
+            });
+
+        })();
+    </script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+
+    
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"gblw"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = 'https://static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $('.title').hover(
+      function() {      
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );   
+      }, 
+      function() {       
+        $(this).stop().animate({'marginLeft': '0px'}, 200);      
+      
+    });   
+
+  });
+
+</script>
+
+
+</body>
+</html>
